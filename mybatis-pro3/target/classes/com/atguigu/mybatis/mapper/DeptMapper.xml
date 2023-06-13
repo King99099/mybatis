@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.DeptMapper">
+    <resultMap id="deptMap" type="dept">
+        <id property="did" column="did"></id>
+        <result property="deptName" column="dept_name"></result>
+    </resultMap>
+    <select id="getEmpAndDeptByStepTwo" resultMap="deptMap">
+        select * from t_dept where did = #{did}
+    </select>
+
+
+    <resultMap id="deptEmpMap" type="dept">
+        <id property="did" column="did"></id>
+        <result property="deptName" column="dept_name"></result>
+        <collection property="emps" ofType="Emp">
+            <id property="eid" column="eid"></id>
+            <result property="empName" column="emp_name"></result>
+            <result property="age" column="age"></result>
+            <result property="sex" column="sex"></result>
+            <result property="email" column="email"></result>
+        </collection>
+    </resultMap>
+    <select id="getDeptEmpByDid" resultMap="deptEmpMap">
+        select dept.*,emp.* from t_dept dept left join t_emp emp on dept.did =
+                                                                    emp.did where dept.did = #{did}
+    </select>
+
+    <resultMap id="getDeptEmpByStep" type="dept">
+        <id property="did" column="did"></id>
+        <result property="deptName" column="dept_name"></result>
+        <collection property="emps" select="com.atguigu.mybatis.mapper.EmpMapper.getDeptEmpByStepTwo" column="did">
+        </collection>
+    </resultMap>
+    <select id="getDeptEmpByStep" resultMap="getDeptEmpByStep">
+        select * from t_dept where did = #{did}
+    </select>
+</mapper>

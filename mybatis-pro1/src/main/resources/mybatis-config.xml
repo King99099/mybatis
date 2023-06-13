@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,
+    objectWrapperFactory?,reflectorFactory?,plugins?,environments?,
+    databaseIdProvider?,mappers?)".-->
+    <properties resource="jdbc.properties"></properties>
+<!--    设置别名-->
+    <typeAliases>
+        <typeAlias type="com.atguigu.mybatis.pojo.User" alias="user"></typeAlias>
+        <package name="com.atguigu.mybatis.pojo"/>
+    </typeAliases>
+    <!--设置连接数据库的环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url"
+                          value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--引入映射文件-->
+    <mappers>
+        <!-- 按文件引入 -->
+<!--
+        <mapper resource="mappers/UserMapper.xml"/>
+-->
+
+        <!-- 以包的形式引入文件
+         注意:
+         1/ 配置文件的包名和接口包名要一致
+         2/ 配置文件的名称要和接口的名称一致
+         -->
+        <package name="com.atguigu.mybatis.mapper"/>
+    </mappers>
+</configuration>
