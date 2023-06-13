@@ -15,5 +15,9 @@ public class Student {
     public static void main(String[] args) {
         System.out.println("hello git!");
         System.out.println("hello git to commit");
+        sayHello();
+    }
+    public static void sayHello(){
+        System.out.println("student say hello git");
     }
 }
