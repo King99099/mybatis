@@ -16,6 +16,7 @@ public class Student {
         System.out.println("hello git!");
         System.out.println("hello git to commit");
         System.out.println("Master test");
+        System.out.println("hot-fix test");
         sayHello();
     }
     public static void sayHello(){
