@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,30 @@ public class TestDynamicSql {
     public void testDynamicSql() throws IOException {
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         DynamicSqlMapper mapper = sqlSession.getMapper(DynamicSqlMapper.class);
-        List<Emp> empList = mapper.getEmpByCondition(new Emp(null,"张三",22,null,null));
+        List<Emp> empList = mapper.getEmpByCondition(new Emp(null,null,null,null,null));
         System.out.println("empList = " + empList);
+    }
+
+    @Test
+    public void testDeleteMoreByArray() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        DynamicSqlMapper mapper = sqlSession.getMapper(DynamicSqlMapper.class);
+        Integer[] eids = new Integer[]{7, 8, 9, 10};
+        int i = mapper.deleteMoreByArray(eids);
+        System.out.println(i);
+    }
+
+    @Test
+    public void testInsertMoreByList() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        DynamicSqlMapper mapper = sqlSession.getMapper(DynamicSqlMapper.class);
+        List<Emp> emps = new ArrayList<>();
+        new Emp(null,"www",33,'1',"");
+        emps.add(new Emp(null,"A1",22,'男',"A1@qq.com"));
+        emps.add(new Emp(null,"A2",23,'女',"A2@qq.com"));
+        emps.add(new Emp(null,"A3",24,'男',"A3@qq.com"));
+        emps.add(new Emp(null,"A4",25,'女',"A4@qq.com"));
+        int i = mapper.insertMoreByList(emps);
+        System.out.println("i = " + i);
     }
 }

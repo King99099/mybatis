@@ -1,5 +1,7 @@
 package com.atguigu.mybatis.pojo;
 
+import java.io.Serializable;
+
 /**
  * ClassName:Emp
  * Package: com.atguigu.mybatis.pojo
@@ -9,7 +11,7 @@ package com.atguigu.mybatis.pojo;
  * @Create 2023/6/8 - 10:39
  * @Version: v1.0
  */
-public class Emp {
+public class Emp implements Serializable {
     private Integer eid;
     private String empName;
     private Integer age;
@@ -27,7 +29,7 @@ public class Emp {
         this.dept = dept;
     }
 
-    public Emp() {
+    public Emp(Object o, String a1, int i, char 男, String s, Object o1) {
     }
 
     public Emp(Integer eid, String empName, Integer age, Character sex, String email) {

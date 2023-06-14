@@ -56,7 +56,7 @@
 
 
     <select id="getEmpByCondition" resultType="emp">
-        select * from t_emp
+        select <include refid="empColumns"></include> from t_emp
         <where>
             <choose>
                 <when test="empName != null and empName != ''">
@@ -77,5 +77,30 @@
             </choose>
         </where>
     </select>
+    <!--批量删除 where in-->
+    <delete id="deleteMoreByArrayIn">
+        delete from t_emp where eid in
+        <foreach collection="array" item="eid" separator="," open="(" close=")">
+            #{eid}
+        </foreach>
+    </delete>
+    <!--批量删除 where or-->
+    <delete id="deleteMoreByArray">
+        delete from t_emp where
+        <foreach collection="array" item="eid" separator="or">
+            eid = #{eid}
+        </foreach>
+    </delete>
 
+    <insert id="insertMoreByList">
+        insert into t_emp
+        values
+        <foreach collection="list" item="emp" separator=",">
+            (null,#{emp.empName},#{emp.age},#{emp.sex},#{emp.email},null)
+        </foreach>
+    </insert>
+
+    <sql id="empColumns" >
+        eid,emp_name,age,sex,email
+    </sql>
 </mapper>

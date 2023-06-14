@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-pro3" />
+        <module name="mybatis-MBG" />
         <module name="mybatis-pro2" />
         <module name="mybatis-pro1" />
       </profile>
