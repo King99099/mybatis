@@ -24,6 +24,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.2.0</version>
+        </dependency>
         <!-- MySQL驱动 -->
         <dependency>
             <groupId>mysql</groupId>
